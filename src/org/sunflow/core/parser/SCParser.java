@@ -495,7 +495,36 @@ public class SCParser implements SceneParser {
                 api.shader(name, "textured_phong");
             else
                 api.shader(name, "phong");
-        } else if (p.peekNextToken("amb-occ") || p.peekNextToken("amb-occ2")) {
+        } 
+         //translucent shader
+        else if (p.peekNextToken("translucent")) {
+            if (p.peekNextToken("color")){
+                api.parameter("color", null, parseColor().getRGB());
+            }
+            if (p.peekNextToken("absorptionColor")){
+                api.parameter("absorptionColor", null, parseColor().getRGB());
+            }
+            if (p.peekNextToken("glob")){
+                api.parameter("glob", null, parseColor().getRGB());
+            }
+            if (p.peekNextToken("pcolor")){
+                api.parameter("pcolor", null, parseColor().getRGB());
+            }
+            if (p.peekNextToken("absorptionDistance")){
+                api.parameter("absorptionDistance", p.getNextFloat());
+            }
+            if (p.peekNextToken("thickness")){
+                api.parameter("thickness", p.getNextFloat());
+            }
+            if (p.peekNextToken("ppower")){
+                api.parameter("ppower", p.getNextFloat());
+            }
+            if (p.peekNextToken("psamples")){
+                api.parameter("psamples", p.getNextInt());
+            }
+                api.shader(name, "translucent");
+        }
+        else if (p.peekNextToken("amb-occ") || p.peekNextToken("amb-occ2")) {
             String tex = null;
             if (p.peekNextToken("diff") || p.peekNextToken("bright"))
                 api.parameter("bright", null, parseColor().getRGB());
