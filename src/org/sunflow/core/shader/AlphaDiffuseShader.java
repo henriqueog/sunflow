@@ -12,24 +12,26 @@ import org.sunflow.math.MathUtils;
 
 public class AlphaDiffuseShader extends DiffuseShader implements AlphaShader {
 
-    private Bitmap alpha;
+      private Texture texture_alpha;
 
     public AlphaDiffuseShader() {
-        alpha = null;
+        texture_alpha = null;
     }
 
     public boolean update(ParameterList pl, SunflowAPI api) {
         String alphaFilename = pl.getString("alpha_texture", null);
         if (alphaFilename != null) {
-            alpha = TextureCache.getTexture(api.resolveTextureFilename(alphaFilename), false).getBitmap();
+            texture_alpha = TextureCache.getTexture(api.resolveTextureFilename(alphaFilename), false);
+            //alpha = TextureCache.getTexture(api.resolveTextureFilename(alphaFilename), false).getBitmap();
         }
-        return true && super.update(pl, api);
+        return texture_alpha !=null && super.update(pl, api);
     }
 
     public Color getRadiance(ShadingState state) {
         Color result = super.getRadiance(state);
-        if (alpha != null) {
-            float a = getAlpha(state);
+        float a = texture_alpha.getAlpha(state.getUV().x, state.getUV().y);
+        if (texture_alpha != null) {
+
             if (a < 1.0f) {
                 return Color.blend(state.traceTransparency(),result,a);
             } else {
@@ -45,7 +47,7 @@ public class AlphaDiffuseShader extends DiffuseShader implements AlphaShader {
         return new Color(a);
     }
 
-    private float getAlpha(ShadingState state) {
+   /* private float getAlpha(ShadingState state) {
         float x = MathUtils.frac(state.getUV().x);
         float y = MathUtils.frac(state.getUV().y);
         float dx = x * (alpha.getWidth() - 1);
@@ -53,7 +55,7 @@ public class AlphaDiffuseShader extends DiffuseShader implements AlphaShader {
         int ix = (int) dx;
         int iy = (int) dy;
 
-        return alpha.readAlpha(ix, iy);
-    }
+        return texture_alpha.getBitmap().readAlpha(ix, iy);
+    }*/
 }
 
