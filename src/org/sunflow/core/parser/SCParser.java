@@ -524,6 +524,17 @@ public class SCParser implements SceneParser {
             }
                 api.shader(name, "translucent");
         }
+         else if(p.peekNextToken("fresnel"))
+        {
+           if (p.peekNextToken("edge")){
+            api.parameter("edge_color",null, parseColor().getRGB());
+        }
+        if (p.peekNextToken("surface")){
+            api.parameter("surface_color",null, parseColor().getRGB());
+        }
+        api.shader(name, "fresnel");
+            
+        }
         else if (p.peekNextToken("amb-occ") || p.peekNextToken("amb-occ2")) {
             String tex = null;
             if (p.peekNextToken("diff") || p.peekNextToken("bright"))
