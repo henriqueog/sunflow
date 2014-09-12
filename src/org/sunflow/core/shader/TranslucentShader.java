@@ -37,13 +37,13 @@ public class TranslucentShader implements Shader {
 
     public boolean update(ParameterList pl, SunflowAPI api) {
         color = pl.getColor("color", color);
-        absorptionColor=pl.getColor("absorptionColor",absorptionColor)
-        glob=pl.getColor("glob",glob)
-        pcolor=pl.getColor("pcolor",pcolor)
-        absorptionDistance=pl.getFloat("absorptionDistance",absorptionDistance)
-        thickness=pl.getFloat("thicknessa",thickness)
-        ppower=pl.getfloat("ppower",ppower)
-        psamples=pl.getInt("psamples",psamples)
+        absorptionColor=pl.getColor("absorptionColor",absorptionColor);
+        glob=pl.getColor("glob",glob);
+        pcolor=pl.getColor("pcolor",pcolor);
+        absorptionDistance=pl.getFloat("absorptionDistance",absorptionDistance);
+        thickness=pl.getFloat("thickness",thickness);
+        ppower=pl.getfloat("ppower",ppower);
+        psamples=pl.getInt("psamples",psamples);
         
         if (absorptionDistance == 0f) {
             absorptionDistance+= 0.0000001f;
