@@ -7,8 +7,6 @@ import org.sunflow.SunflowAPI;
 import org.sunflow.core.shader.*;
 public class FresnelShader implements Shader {
 
-public Color edgeColor;
-public Color surfaceColor;
 private DiffuseShader light=new DiffuseShader();
 private DiffuseShader dark=new DiffuseShader();
 
