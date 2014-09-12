@@ -134,6 +134,7 @@ import org.sunflow.image.writers.JPGBitmapWriter;
 import org.sunflow.image.writers.PNGBitmapWriter;
 import org.sunflow.image.writers.TGABitmapWriter;
 import org.sunflow.system.Plugins;
+import org.sunflow.core.shader.FresnelShader;
 
 /**
  * This class acts as the central repository for all user extensible types in
@@ -223,6 +224,9 @@ public final class PluginRegistry {
         // transparent shaders
         shaderPlugins.registerPlugin("transparent_shiny_phong", TransparentShinyPhong.class);
 
+        //janino adapted shaders
+        shaderPlugins.registerPlugin("fresnel", FresnelShader.class);
+        
         // preview shaders
         shaderPlugins.registerPlugin("quick_gray", QuickGrayShader.class);
         shaderPlugins.registerPlugin("simple", SimpleShader.class);
