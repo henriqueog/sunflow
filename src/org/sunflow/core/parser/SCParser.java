@@ -541,6 +541,52 @@ public class SCParser implements SceneParser {
         api.shader(name, "fresnel");
             
         }
+        else if(p.peekNextToken("simple_sss"))
+    {
+        if(p.peekNextToken("diff")){
+            api.parameter("diff",null, parseColor().getRGB());
+        }
+        if(p.peekNextToken("spec")){
+            api.parameter("spec",null, parseColor().getRGB());
+        }
+        if(p.peekNextToken("bright")){
+            api.parameter("bright",null, parseColor().getRGB());
+        }
+        if(p.peekNextToken("dark")){
+            api.parameter("dark",null, parseColor().getRGB());
+        }
+        if(p.peekNextToken("color")){
+            api.parameter("color",null, parseColor().getRGB());
+        }
+        if(p.peekNextToken("absorbtionColor")){
+            api.parameter("absorbtionColor",null, parseColor().getRGB());
+        }
+        if(p.peekNextToken("numRays")){
+            api.parameter("numRays", p.getNextInt());
+        }
+        if(p.peekNextToken("power")){
+            api.parameter("power",p.getNextFloat());
+        }
+        if(p.peekNextToken("reflectiveness")){
+            api.parameter("reflectiveness",p.getNextFloat());
+        }
+        if(p.peekNextToken("hardness")){
+            api.parameter("hardness",p.getNextFloat());
+        }
+        if(p.peekNextToken("depth")){
+            api.parameter("depth",p.getNextFloat());
+        }
+        if(p.peekNextToken("spread")){
+            api.parameter("spread",p.getNextFloat());
+        }
+        if(p.peekNextToken("glossyness")){
+            api.parameter("glossyness",p.getNextFloat());
+        }
+        if(p.peekNextToken("absorbtionValue")){
+            api.parameter("absorbtionValue",p.getNextFloat());
+        }
+        api.shader(name,"simpleSSS");
+    }
         else if (p.peekNextToken("amb-occ") || p.peekNextToken("amb-occ2")) {
             String tex = null;
             if (p.peekNextToken("diff") || p.peekNextToken("bright"))
