@@ -476,7 +476,13 @@ public class SCParser implements SceneParser {
             } else if (p.peekNextToken("texture")) {
                 api.parameter("texture", p.getNextToken());
                 api.shader(name, "textured_diffuse");
-            } else
+            }  //alpha diffuse shader
+            else if(p.peekNextToken("text_alpha")){
+                String alpha = null;
+               api.parameter("alpha_texture",  alpha = p.getNextToken());
+               api.shader(name, "alpha_diffuse");
+           }
+           else
                 UI.printWarning(Module.API, "Unrecognized option in diffuse shader block: %s", p.getNextToken());
         } else if (p.peekNextToken("phong")) {
             String tex = null;
