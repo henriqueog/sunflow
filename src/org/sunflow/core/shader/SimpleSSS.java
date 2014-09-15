@@ -24,7 +24,7 @@ public class SimpleSSS implements Shader {
     public float depth = 0.15f;
     public float spread = 1f;
     public float glossyness = 0.8f;
-    public float absorbtionValue = 0.5f;
+    public float absorbtionValue = 1f;
 
     public boolean update(ParameterList pl, SunflowAPI api) {
         diff = pl.getColor("diff",diff);
