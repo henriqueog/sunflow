@@ -11,22 +11,36 @@ import org.sunflow.math.Vector3;
 import org.sunflow.math.Point3;
 
 public class SimpleSSS implements Shader {
-    Color diff = new Color(0.3f,1.0f,0.6f);
-    Color spec = new Color(1.0f,1.0f,1.0f);
-    Color bright = new Color(1f,1f,1f);
-    Color dark = new Color(0f,0f,0f);
-    Color color = new Color(0.6f,0.8f,0.8f);
-    Color absorbtionColor = new Color(0.6f,0.5f,0.3f).opposite();
-    int numRays = 5;
-    float power = 100;
-    float reflectiveness = 0.8f;
-    float hardness = 0.15f;
-    float depth = 0.15f;
-    float spread = 1f;
-    float glossyness = 0.8f;
-    float absorbtionValue = 0.5f;
+    public Color diff = new Color(0.3f,1.0f,0.6f);
+    public Color spec = new Color(1.0f,1.0f,1.0f);
+    public Color bright = new Color(1f,1f,1f);
+    public Color dark = new Color(0f,0f,0f);
+    public Color color = new Color(0.6f,0.8f,0.8f);
+    public Color absorbtionColor = new Color(0.6f,0.5f,0.3f).opposite();
+    public int numRays = 5;
+    public float power = 100;
+    public float reflectiveness = 0.8f;
+    public float hardness = 0.15f;
+    public float depth = 0.15f;
+    public float spread = 1f;
+    public float glossyness = 0.8f;
+    public float absorbtionValue = 0.5f;
 
     public boolean update(ParameterList pl, SunflowAPI api) {
+        diff = pl.getColor("diff",diff);
+        spec = pl.getColor("spec",spec);
+        bright = pl.getColor("bright",bright);
+        dark = pl.getColor("dark",dark);
+        color = pl.getColor("color",color);
+        absorbtionColor = pl.getColor("absorbtionColor",absorbtionColor);
+        numRays = pl.getInt("numRays",numRays);
+        power = pl.getFloat("power",power);
+        reflectiveness = pl.getFloat("reflectiveness",reflectiveness);
+        hardness = pl.getFloat("hardness",hardness);
+        depth = pl.getFloat("depth",depth);
+        spread = pl.getFloat("spread",spread);
+        glossyness = pl.getFloat("glossyness",glossyness);
+        absorbtionValue = pl.getFloat("absorbtionValue",absorbtionValue);
         return true;
     }
     protected Color getDiffuse(ShadingState state) {
