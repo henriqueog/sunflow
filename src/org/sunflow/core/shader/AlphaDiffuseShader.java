@@ -5,6 +5,7 @@ import org.sunflow.core.AlphaShader;
 import org.sunflow.core.ParameterList;
 import org.sunflow.core.ShadingState;
 import org.sunflow.core.TextureCache;
+import org.sunflow.core.Texture;
 import org.sunflow.core.shader.DiffuseShader;
 import org.sunflow.image.Bitmap;
 import org.sunflow.image.Color;
@@ -12,10 +13,12 @@ import org.sunflow.math.MathUtils;
 
 public class AlphaDiffuseShader extends DiffuseShader implements AlphaShader {
 
-      private Texture texture_alpha;
+    private Texture texture_alpha;
+    private Bitmap alpha;
 
     public AlphaDiffuseShader() {
         texture_alpha = null;
+        alpha = null;
     }
 
     public boolean update(ParameterList pl, SunflowAPI api) {
@@ -47,7 +50,7 @@ public class AlphaDiffuseShader extends DiffuseShader implements AlphaShader {
         return new Color(a);
     }
 
-   /* private float getAlpha(ShadingState state) {
+   private float getAlpha(ShadingState state) {
         float x = MathUtils.frac(state.getUV().x);
         float y = MathUtils.frac(state.getUV().y);
         float dx = x * (alpha.getWidth() - 1);
@@ -56,6 +59,6 @@ public class AlphaDiffuseShader extends DiffuseShader implements AlphaShader {
         int iy = (int) dy;
 
         return texture_alpha.getBitmap().readAlpha(ix, iy);
-    }*/
+    }
 }
 
