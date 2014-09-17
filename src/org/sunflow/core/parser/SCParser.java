@@ -693,7 +693,22 @@ public class SCParser implements SceneParser {
             if (p.peekNextToken("samples"))
                 api.parameter("samples", p.getNextInt());
             api.shader(name, "uber");
-        } else
+        } 
+        else if(p.peekNextToken("transparent_shiny_phong"))
+        {
+            if (p.peekNextToken("refl"))
+                api.parameter("shiny", p.getNextFloat());
+            api.shader(name,"transparent_shiny_phong");
+        }
+        
+        else if(p.peekNextToken("alpha_phong"))
+        {
+            if(p.peekNextToken("trans"))
+                api.parameter("transparency",p.getNextFloat());
+            api.shader(name,"alpha_phong");
+        }
+        
+        else
             UI.printWarning(Module.API, "Unrecognized shader type: %s", p.getNextToken());
         p.checkNextToken("}");
         return true;
